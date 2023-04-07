@@ -1,10 +1,17 @@
+#Packages to install 
+
+#install.packages("cluster")
+#install.packages("factoextra")
+#install.packages("gridExtra")
+#install.packages("dplyr")
+
 library(tidyverse)
 library(cluster)
 library(factoextra)
 library(gridExtra)
 library(dplyr)
 
-#Import Data
+#Import Data. Ensure this .r file is in the same folder/working directory as the .csv
 real_estate_data_raw <- read.csv("train.csv", header=TRUE)
 
 
