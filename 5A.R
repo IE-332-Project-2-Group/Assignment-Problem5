@@ -12,7 +12,7 @@ real_estate_data_raw <- read.csv("train.csv", header=TRUE)
 real_estate_data <-select_if(real_estate_data_raw, is.numeric)
 data_frame<- na.omit(data_frame)
 data_frame<- scale(data_frame)
-data_frame<- data_frame[sample(nrow(data_frame),25),]
+data_frame<- data_frame[sample(nrow(data_frame),25),]. #.  <----- THIS IS AMOUNT OF PROPERTIES TO BE INCLUDED IN CLUSTERING
 
 
 #Create Clusters. Lines commented out have different cluster amounts
