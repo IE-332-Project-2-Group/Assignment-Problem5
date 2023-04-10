@@ -25,22 +25,9 @@ Var <- apply(re_data_frame, 2, var)
 zero_var_col <- which (Var == 0)
 re_data_frame<- re_data_frame[, -zero_var_col]
 
-#Create Clusters. Lines commented out have different cluster amounts
-
-#cluster1 <- kmeans(re_data_frame, centers = 2, nstart = 5)
-#cluster2 <- kmeans(re_data_frame, centers = 3, nstart = 5)
-
+#Create Cluster.
 cluster3 <- kmeans(re_data_frame, centers = 4, nstart = 5)
 
-#cluster4 <- kmeans(re_data_frame, centers = 5, nstart = 5)
-
-
-#Plots the Clusters. Lines commented out plot the above clusters. Cluster1=plot1.. etc
-
-#plot1 <-fviz_cluster(cluster1, data = re_data_frame)
-#plot2 <-fviz_cluster(cluster2, data = re_data_frame)
-
+#Plots the Clusters.
 plot3 <-fviz_cluster(cluster3, data = re_data_frame)
-
-#plot4 <-fviz_cluster(cluster4, data = re_data_frame)
 grid.arrange(plot3)
