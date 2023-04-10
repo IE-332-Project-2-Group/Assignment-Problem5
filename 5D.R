@@ -34,10 +34,7 @@ cluster3_data <- re_data_frame[cluster_alg$cluster == 3, ]
 cluster4_data <- re_data_frame[cluster_alg$cluster == 4, ]
 
 
-#Determine size of Test and Train data frames for each cluster. If the cluster 
-#has an even number of values the observations will be split equally between 
-#both sets. If the number is odd, one will be omitted and the rest will be split 
-#evenly
+#Determine size of Test and Train data frames for each cluster. If even split. If odd ommit 1 and split
 
 cluster11_counts <- nrow(cluster1_data)
 if (cluster11_counts %% 2 == 1) {
@@ -67,19 +64,13 @@ if (cluster41_counts %% 2 == 1) {
   cluster42_counts <- cluster41_counts / 2
 }
 
-#Creating Training and Testing Data Data Cluster 1
+#Creating Training and Testing Data for clusters
 training_c1 <- cluster1_data[1:cluster12_counts,]
 testing_c1 <- cluster1_data[(cluster12_counts+1):cluster11_counts,]
-
-#Creating Training and Testing Data Cluster 2
 training_c2 <- cluster2_data[1:cluster22_counts,]
 testing_c2 <- cluster2_data[(cluster22_counts+1):cluster21_counts,]
-
-#Creating Training and Testing Data Data Cluster 3
 training_c3 <- cluster3_data[1:cluster32_counts,]
 testing_c3 <- cluster3_data[(cluster32_counts+1):cluster31_counts,]
-
-#Creating Training and Testing Data Cluster 4
 training_c4 <- cluster4_data[1:cluster42_counts,]
 testing_c4 <- cluster4_data[(cluster42_counts+1):cluster41_counts,]
 
@@ -93,19 +84,12 @@ reg_model_c4 <- lm(training_c4$OverallQual~.,data = training_c4)
 predictions_c1 <- predict(reg_model_c1, newdata = testing_c1)
 Rsquare_c1 <- sqrt(mean((testing_c1$OverallQual - predictions_c1)^2))
 print(paste0("R-squared value for the cluster 1 model is: ", round(Rsquare_c1, 3)))
-
 predictions_c2 <- predict(reg_model_c2, newdata = testing_c2)
 Rsquare_c2 <- sqrt(mean((testing_c2$OverallQual - predictions_c2)^2))
 print(paste0("R-squared value for the cluster 2 model is: ", round(Rsquare_c2, 3)))
-
 predictions_c3 <- predict(reg_model_c3, newdata = testing_c3)
 Rsquare_c3 <- sqrt(mean((testing_c3$OverallQual - predictions_c3)^2))
 print(paste0("R-squared value for the cluster 3 model is: ", round(Rsquare_c3, 3)))
-
 predictions_c4 <- predict(reg_model_c4, newdata = testing_c4)
 Rsquare_c4 <- sqrt(mean((testing_c4$OverallQual - predictions_c4)^2))
 print(paste0("R-squared value for the cluster 4 model is: ", round(Rsquare_c4, 3)))
-
-#One of the clusters evrytime has an R-value of over 1, which is not acceptable
-#I'm unsure of what is causing this issue. The remaining 3 clusters have acceptable
-#R-square values
